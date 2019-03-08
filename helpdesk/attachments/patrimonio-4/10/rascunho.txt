@@ -1,0 +1,20 @@
+---- Pág. 17 - Apostila Efetuando Compras Diretas ----
+
+O empenho é o registro da despesa, dando início à relação contratual entre o órgão público e seus
+fornecedores e prestadores de serviços, sendo uma garantia ao fornecedor e ao mesmo tempo, um controle
+de gastos. 
+
+O empenho pode ser:
+
+	Ordinário: quando o valor do empenho é igual ao da compra ou serviço e o pagamento pelo seu total,
+	em uma única vez.
+	
+	Por estimativa: quando não houver condições de se apurar o valor correto da despesa.
+
+	Global: quando se conhece o valor total da despesa mas cujo pagamento é feito parceladamente.
+
+
+Adjudicação: usado para descrever a última fase do processo de licitação, na seara administrativa, 
+que nada mais é do que o ato que dá a expectativa de direito ao vencedor da licitação, 
+ficando o Estado obrigado a contratar exclusivamente com aquele. O Estado poderá não firmar o 
+contrato administrativo, porém, se o fizer, terá de ser com o licitado.
