@@ -80,7 +80,7 @@ $(document).on('change', ':file', function() {
         <h4><i class="fa fa-clock-o fa-fw fa-lg"></i>&nbsp;{% trans "Follow-Ups" %}</h4>
     </div>
     <!-- /.panel-heading -->
-    <div class="panel-body">
+    <div class="panel-body">        
         <ul class="timeline">
         {% for followup in ticket.followup_set.all %}
             <li{% if not followup.user %} class="timeline-inverted"{% endif %}>
@@ -92,11 +92,13 @@ $(document).on('change', ':file', function() {
                     </div>
                     <div class="timeline-body">
                         <p>{% if followup.comment %}{{ followup.comment|force_escape|urlizetrunc:50|num_to_link|linebreaksbr }}{% endif %}</p>
+                        <!--
                         {% for change in followup.ticketchange_set.all %}
                             {% if forloop.first %}<div class='changes'><ul>{% endif %}
                             <li>{% blocktrans with change.field as field and change.old_value as old_value and change.new_value as new_value %}Changed {{ field }} from {{ old_value }} to {{ new_value }}.{% endblocktrans %}</li>
                             {% if forloop.last %}</ul></div>{% endif %}
                         {% endfor %}
+                        -->
                         {% for attachment in followup.attachment_set.all %}{% if forloop.first %}<hr><div class='attachments'><ul>{% endif %}
                             <li><a href='{{ attachment.file.url }}'>{{ attachment.filename }}</a> ({{ attachment.mime_type }}, {{ attachment.size|filesizeformat }})
                             {% if followup.user and request.user == followup.user %}
@@ -105,9 +107,10 @@ $(document).on('change', ':file', function() {
                             </li>
                             {% if forloop.last %}</ul></div>{% endif %}
                         {% endfor %}
-<!--- ugly long test to suppress the following if it will be empty, to save vertical space -->
-{% with possible=helpdesk_settings.HELPDESK_SHOW_EDIT_BUTTON_FOLLOW_UP %}
-    {% if  possible and followup.user and request.user == followup.user and not followup.ticketchange_set.all or  possible and user.is_superuser and helpdesk_settings.HELPDESK_SHOW_DELETE_BUTTON_SUPERUSER_FOLLOW_UP %}
+
+                        <!--- ugly long test to suppress the following if it will be empty, to save vertical space -->
+                        {% with possible=helpdesk_settings.HELPDESK_SHOW_EDIT_BUTTON_FOLLOW_UP %}
+                        {% if  possible and followup.user and request.user == followup.user and not followup.ticketchange_set.all or  possible and user.is_superuser and helpdesk_settings.HELPDESK_SHOW_DELETE_BUTTON_SUPERUSER_FOLLOW_UP %}
                         <hr>
                         <div class="btn-group">
                             {% if helpdesk_settings.HELPDESK_SHOW_EDIT_BUTTON_FOLLOW_UP %}
@@ -119,12 +122,11 @@ $(document).on('change', ':file', function() {
                                 <a href="{% url 'helpdesk:followup_delete' ticket.id followup.id %}" class='followup-edit'><button type="button" class="btn btn-warning btn-xs"><i class="fa fa-trash"></i>&nbsp;{% trans "Delete" %}</button></a>
                             {% endif %}
                         </div>
-{% endif %}{% endwith %}
+                        {% endif %}{% endwith %}
                     </div>
                 </div>
             </li>
         {% endfor %}
-
         </ul>
     </div>
     <!-- /.panel-body -->

@@ -2,7 +2,6 @@
 Default settings for django-helpdesk.
 
 """
-
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
@@ -17,7 +16,7 @@ if not isinstance(DEFAULT_USER_SETTINGS, dict):
         'email_on_ticket_assign': True,
         'email_on_ticket_change': True,
         'login_view_ticketlist': True,
-        'tickets_per_page': 25
+        'tickets_per_page': 10
     }
 
 
@@ -69,7 +68,6 @@ HELPDESK_AUTO_SUBSCRIBE_ON_TICKET_RESPONSE = getattr(settings,
                                                      'HELPDESK_AUTO_SUBSCRIBE_ON_TICKET_RESPONSE',
                                                      False)
 
-
 ############################
 # options for public pages #
 ############################
@@ -78,8 +76,7 @@ HELPDESK_AUTO_SUBSCRIBE_ON_TICKET_RESPONSE = getattr(settings,
 HELPDESK_VIEW_A_TICKET_PUBLIC = getattr(settings, 'HELPDESK_VIEW_A_TICKET_PUBLIC', True)
 
 # show 'submit a ticket' section on public page?
-HELPDESK_SUBMIT_A_TICKET_PUBLIC = getattr(settings, 'HELPDESK_SUBMIT_A_TICKET_PUBLIC', True)
-
+HELPDESK_SUBMIT_A_TICKET_PUBLIC = getattr(settings, 'HELPDESK_SUBMIT_A_TICKET_PUBLIC', False)
 
 ###################################
 # options for update_ticket views #
@@ -151,10 +148,3 @@ HELPDESK_ENABLE_PER_QUEUE_STAFF_PERMISSION = getattr(
     settings, 'HELPDESK_ENABLE_PER_QUEUE_STAFF_PERMISSION', False)
 
 
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    'bla-bla',
-]

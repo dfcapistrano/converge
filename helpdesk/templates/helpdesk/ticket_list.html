@@ -39,67 +39,58 @@ $(document).ready(function() {
 
 {% load in_list %}
 
-            
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            {% trans "Query Results" %}
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            {{ search_message|safe }}
-                            <form method='post' action='{% url 'helpdesk:mass_update' %}' id="ticket_mass_update">
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="ticketTable" data-page-length='{{ default_tickets_per_page }}'>
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>&nbsp;</th>
-                                            <th>{% trans "Pr" %}</th>
-                                            <th>{% trans "Title" %}</th>
-                                            <th>{% trans "Queue" %}</th>
-                                            <th>{% trans "Status" %}</th>
-                                            <th>{% trans "Created" %}</th>
-                                            <th>{% trans "Concluir em" %}</th>
-                                            <th>{% trans "Owner" %}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for ticket in tickets %}
-                                        <tr class="{{ ticket.get_priority_css_class }}">
-                                            <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket }}</a></th>
-                                            <td><input type='checkbox' name='ticket_id' value='{{ ticket.id }}' class='ticket_multi_select' /></td>
-                                            <td>{{ ticket.priority }}</td>
-                                            <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></th>
-                                            <td>{{ ticket.queue }}</td>
-                                            <td>{{ ticket.get_status }}</td>
-                                            <td data-order='{{ ticket.created|date:"U" }}'><span title='{{ ticket.created|date:"r" }}'>{{ ticket.created|naturaltime }}</span></td>
-                                            <td data-order='{{ ticket.due_date|date:"U" }}'><span title='{{ ticket.due_date|date:"r" }}'>{{ ticket.due_date|naturaltime }}</span></td>
-                                            <td>{{ ticket.get_assigned_to }}</td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            {% csrf_token %}
-
-                                <p><label>{% trans "Select:" %} </label>
-                                    <a href='#select_all' id='select_all'><button class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i>&nbsp;{% trans "All" %}</button></a>
-                                    <a href='#select_none' id='select_none'><button class="btn btn-primary btn-sm"><i class="fa fa-times-circle"></i>&nbsp;{% trans "None" %}</button></a>
-                                    <a href='#select_inverse' id='select_inverse'><button class="btn btn-primary btn-sm"><i class="fa fa-arrows-alt"></i>&nbsp;{% trans "Invert" %}</button></a>
-                                </p>
-
-                                <p><label for='id_mass_action'>{% trans "With Selected Tickets:" %}</label> <select name='action' id='id_mass_action'><option value='take'>{% trans "Take (Assign to me)" %}</option><option value='delete'>{% trans "Delete" %}</option><optgroup label='{% trans "Close" %}'><option value='close'>{% trans "Close (Don't Send E-Mail)" %}</option><option value='close_public'>{% trans "Close (Send E-Mail)" %}</option></optgroup><optgroup label='{% trans "Assign To" %}'><option value='unassign'>{% trans "Nobody (Unassign)" %}</option>{% for u in user_choices %}<option value='assign_{{ u.id }}'>{{ u.get_username }}</option>{% endfor %}</optgroup></select> <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-right"></i>&nbsp;{% trans "Go" %}</button></p>
-                            </form>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                {% trans "Query Results" %}
             </div>
-            <!-- /.row -->
-
-
-
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {{ search_message|safe }}
+                <form method='post' action='{% url 'helpdesk:mass_update' %}' id="ticket_mass_update">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="ticketTable" data-page-length='{{ default_tickets_per_page }}'>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <!--<th>&nbsp;</th>-->
+                                <!--<th>{% trans "Pr" %}</th>-->
+                                <th>{% trans "Sistema" %}</th>
+                                <th>{% trans "Entidade" %}</th>
+                                <th>{% trans "Solicitante" %}</th>
+                                <th>{% trans "Title" %}</th>
+                                <th>{% trans "Status" %}</th>
+                                <th>{% trans "Created" %}</th>
+                                <th>{% trans "Concluir em" %}</th>
+                                <th>{% trans "Owner" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ticket in tickets %}
+                            <tr class="{{ ticket.get_priority_css_class }}">
+                                <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket }}</a></th>
+                                <!--<td><input type='checkbox' name='ticket_id' value='{{ ticket.id }}' class='ticket_multi_select' /></td>-->
+                                <!--<td>{{ ticket.priority }}</td>-->
+                                <td>{{ ticket.queue }}</td>
+                                <td>{{ ticket.entidade }}</td>
+                                <td>{{ ticket.solicitante }}</td>
+                                <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></th>
+                                <td>{{ ticket.get_status }}</td>
+                                <td data-order='{{ ticket.created|date:"U" }}'><span title='{{ ticket.created|date:"r" }}'>{{ ticket.created|naturaltime }}</span></td>
+                                <td data-order='{{ ticket.due_date|date:"U" }}'><span title='{{ ticket.due_date|date:"r" }}'>{{ ticket.due_date|naturaltime }}</span></td>
+                                <td>{{ ticket.get_assigned_to }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% csrf_token %}
+                </form>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
 {% endblock %}

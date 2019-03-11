@@ -393,6 +393,16 @@ class Ticket(models.Model):
         max_length=200,
     )
 
+    entidade = models.CharField(
+        blank=False,
+        max_length=50
+    )
+
+    solicitante = models.CharField(
+        blank=False,
+        max_length=50
+    )
+
     queue = models.ForeignKey(
         Queue,
         on_delete=models.CASCADE,

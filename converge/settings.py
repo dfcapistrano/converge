@@ -13,7 +13,7 @@ SECRET_KEY = 'h-9dgzb)6u&egp+x@e&v8pz3-xuxgu^c87=w^z(6sqphw@0k)='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.0.154', 'localhost']
 
 SITE_ID = 1
 

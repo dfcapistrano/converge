@@ -141,6 +141,21 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         choices=()
     )
 
+    entidade = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label=_('Informe a entidade'),
+    )
+
+    solicitante = forms.CharField(
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label=_('Informe o solicitante'),
+    )
+
+
     title = forms.CharField(
         max_length=100,
         required=True,
@@ -195,6 +210,7 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         queue = Queue.objects.get(id=int(self.cleaned_data['queue']))
 
         ticket = Ticket(title=self.cleaned_data['title'],
+                        solicitante=self.cleaned_data['solicitante'],
                         submitter_email=self.cleaned_data['submitter_email'],
                         created=timezone.now(),
                         status=Ticket.OPEN_STATUS,
