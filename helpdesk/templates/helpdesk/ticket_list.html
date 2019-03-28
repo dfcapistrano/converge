@@ -1,7 +1,7 @@
 {% extends "helpdesk/base.html" %}
 {% load i18n humanize %}
 {% load static from staticfiles %}
-{% block helpdesk_title %}{% trans "Tickets" %}{% endblock %}
+{% block helpdesk_title %}{% trans "Chamados" %}{% endblock %}
 {% block helpdesk_head %}
 
 <script src='{% static "helpdesk/filter.js" %}'></script>
@@ -33,7 +33,7 @@ $(document).ready(function() {
 });
 </script>
 {% endblock %}
-{% block h1_title %}Tickets
+{% block h1_title %}<!--Texto na parte de cima da tabela-->
     {% if from_saved_query %} [{{ saved_query.title }}]{% endif %}{% endblock %}
 {% block helpdesk_body %}
 
@@ -43,7 +43,7 @@ $(document).ready(function() {
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                {% trans "Query Results" %}
+                {% trans "Todos os Chamados" %}
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

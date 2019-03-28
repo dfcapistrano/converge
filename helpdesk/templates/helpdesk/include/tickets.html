@@ -13,9 +13,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>{% trans "Pr" %}</th>
+                                            <th>{% trans "Entidade" %}</th>
                                             <th>{% trans "Title" %}</th>
-                                            <th>{% trans "Queue" %}</th>
+                                            <th>{% trans "Sistema" %}</th>
                                             <th>{% trans "Status" %}</th>
                                             <th>{% trans "Last Update" %}</th>
                                         </tr>
@@ -24,11 +24,11 @@
                                         {% for ticket in ticket_list %}
                                         <tr class="{{ ticket.get_priority_css_class }}">
                                             <td><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket }}</a></td>
-                                            <td>{{ ticket.priority }}</td>
+                                            <td>{{ ticket.entidade }}</td>
                                             <td><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></td>
                                             <td>{{ ticket.queue }}</td>
                                             <td>{{ ticket.get_status }}</td>
-                                            <td><span title='{{ ticket.modified|date:"r" }}'>{{ ticket.modified|naturaltime }}</span></td>
+                                            <td><span title='{{ ticket.modified|date:"r" }}'>{{ ticket.modified | naturaltime }}</span></td>
                                         </tr>
                                         {% empty %}
                                         <tr>{% if ticket_list_empty_message %}<td colspan='6'>{{ ticket_list_empty_message }}</td>{% else %}<td colspan='6'>{% trans "You do not have any pending tickets." %}</td>{% endif %}</tr>

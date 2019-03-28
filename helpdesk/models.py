@@ -388,9 +388,33 @@ class Ticket(models.Model):
         (5, _('5. Very Low')),
     )
 
+    DUVIDA = 1
+    MELHORIA = 2
+    ACOMP_TECNICO = 3
+    CONFIGURACAO = 4
+    DESENVOLVIMENTO = 5
+    SUPORTE = 6
+    CONV_DADOS = 7
+
+    TIPO_DE_ITEM = (
+        (DUVIDA, _('Dúvida')),
+        (MELHORIA, _('Melhoria do Sistema')),
+        (ACOMP_TECNICO, _('Acompanhamento Técnico')),
+        (CONFIGURACAO, _('Configuração')),
+        (DESENVOLVIMENTO, _('Desenvolvimento')),
+        (SUPORTE, _('Suporte')),
+        (CONV_DADOS, _('Conversão de Dados')),
+    )
+
     title = models.CharField(
         _('Title'),
         max_length=200,
+    )
+
+    tipo_de_item = models.IntegerField(
+        choices=TIPO_DE_ITEM,
+        default=6,
+        blank=6,
     )
 
     entidade = models.CharField(

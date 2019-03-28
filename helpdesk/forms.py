@@ -1,13 +1,3 @@
-"""
-django-helpdesk - A Django powered ticket tracker for small enterprise.
-
-(c) Copyright 2008 Jutda. All Rights Reserved. See LICENSE for details.
-
-forms.py - Definitions of newforms-based forms for creating and maintaining
-           tickets.
-"""
-
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.six import StringIO
 from django import forms
@@ -36,11 +26,7 @@ CUSTOMFIELD_TO_FIELD_DICT = {
     'slug': forms.SlugField,
 }
 
-
 class CustomFieldMixin(object):
-    """
-    Mixin that provides a method to turn CustomFields into an actual field
-    """
 
     def customfield_to_field(self, field, instanceargs):
         # if-elif branches start with special cases
@@ -130,13 +116,10 @@ class EditFollowUpForm(forms.ModelForm):
 
 
 class AbstractTicketForm(CustomFieldMixin, forms.Form):
-    """
-    Contain all the common code and fields between "TicketForm" and
-    "PublicTicketForm". This Form is not intended to be used directly.
-    """
+
     queue = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        label=_('Queue'),
+        label=_('Sistema'),
         required=True,
         choices=()
     )
@@ -154,7 +137,6 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         label=_('Informe o solicitante'),
     )
-
 
     title = forms.CharField(
         max_length=100,
