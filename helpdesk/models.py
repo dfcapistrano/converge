@@ -22,15 +22,6 @@ import re
 
 @python_2_unicode_compatible
 class Queue(models.Model):
-    """
-    A queue is a collection of tickets into what would generally be business
-    areas or departments.
-
-    For example, a company may have a queue for each Product they provide, or
-    a queue for each of Accounts, Pre-Sales, and Support.
-
-    """
-
     title = models.CharField(
         _('Title'),
         max_length=100,
@@ -510,6 +501,9 @@ class Ticket(models.Model):
         help_text=_('The date this ticket was last escalated - updated '
                     'automatically by management/commands/escalate_tickets.py.'),
     )
+
+    def _get_tipo_de_suporte(self):
+        return self.Ticket.TIPO_DE_SUPORTE
 
     def _get_assigned_to(self):
         """ Custom property to allow us to easily print 'Unassigned' if a

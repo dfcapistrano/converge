@@ -129,7 +129,8 @@ class AbstractTicketForm(CustomFieldMixin, forms.Form):
         choices=Ticket.TIPO_DE_SUPORTE,
         required=True,
         initial='6',
-        label=_('Tipo do suporte'),
+        label=_('Tipo de suporte'),
+        help_text=_("Informe o tipo de atendimento deste chamado."),
     )
 
     entidade = forms.CharField(
