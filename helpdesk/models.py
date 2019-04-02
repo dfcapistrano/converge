@@ -396,7 +396,7 @@ class Ticket(models.Model):
     SUPORTE = 6
     CONV_DADOS = 7
 
-    TIPO_DE_ITEM = (
+    TIPO_DE_SUPORTE = (
         (DUVIDA, _('Dúvida')),
         (MELHORIA, _('Melhoria do Sistema')),
         (ACOMP_TECNICO, _('Acompanhamento Técnico')),
@@ -411,10 +411,10 @@ class Ticket(models.Model):
         max_length=200,
     )
 
-    tipo_de_item = models.IntegerField(
-        choices=TIPO_DE_ITEM,
-        default=6,
-        blank=6,
+    tipo_de_suporte = models.IntegerField(
+        _('Tipo de Suporte'),
+        choices=TIPO_DE_SUPORTE,
+        default=6
     )
 
     entidade = models.CharField(

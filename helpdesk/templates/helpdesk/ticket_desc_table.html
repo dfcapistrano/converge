@@ -18,6 +18,7 @@
                             {% if ticket.on_hold %} | <a href="{% url 'helpdesk:unhold' ticket.id %}" class="ticket-hold"><button class="btn btn-warning btn-xs"><i class="fa fa-play"></i> {% trans "Unhold" %}</button></a>{% else %} | <a href="{% url 'helpdesk:hold' ticket.id %}" class="ticket-hold"><button class="btn btn-warning btn-xs"><i class="fa fa-pause"></i> {% trans "Hold" %}</button></a>{% endif %}
                             </span></td></tr>
                         <tr><th colspan='2'>{% blocktrans with ticket.queue as queue %}Sistema: {{ queue }}{% endblocktrans %}</th></tr>
+                        <tr><th colspan='2'>Tipo de Suporte: {{ ticket.tipo_de_suporte }}</th></tr>
                         <tr><th colspan='2'>Entidade: {{ ticket.entidade }}</th></tr>
                         <tr><th colspan='2'>Solicitante: {{ ticket.solicitante }}</th></tr>
                         </thead>
